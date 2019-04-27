@@ -1,0 +1,153 @@
+﻿<Window x:Class="DrcomFake.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:DrcomFake"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{x:Null}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="Microsoft YaHei"
+        Title="长沙学院校园网客户端" Height="380" Width="300"
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        AllowsTransparency="True" Icon="icon.ico"
+        
+        >
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Card.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.CheckBox.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+
+    <DockPanel x:Name="MainDock" MouseLeftButtonDown="DragWindow">
+
+        <materialDesign:Snackbar HorizontalAlignment="Stretch" x:Name="Snackbar" DockPanel.Dock="Bottom">
+            <materialDesign:SnackbarMessage x:Name="SnackMessage"
+                
+                ActionContent="OK" ActionClick="SnackbarMessage_ActionClick"/>
+        </materialDesign:Snackbar >
+        <materialDesign:Flipper  Style="{StaticResource MaterialDesignCardFlipper}" Width="298" Height="380" materialDesign:ShadowAssist.Darken="True" materialDesign:ShadowAssist.ShadowDepth="Depth5" materialDesign:ShadowAssist.ShadowEdges="All">
+            <materialDesign:Flipper.FrontContent>
+                <Grid Height="380" Width="300" x:Name="MainGrid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition  Height="160" />
+                        <RowDefinition  Height="25" />
+                        <RowDefinition  Height="*" />
+
+                    </Grid.RowDefinitions>
+                    <materialDesign:ColorZone  Mode="PrimaryMid" Padding="6" >
+                        <DockPanel  >
+                            <Button x:Name="CloseToTray" Click="CloseToTray_Click" DockPanel.Dock="Right" Style="{StaticResource MaterialDesignToolForegroundButton}"  HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Kind="WindowClose"  HorizontalAlignment="Right" />
+                            </Button>
+                            <Button DockPanel.Dock="Left" Style="{StaticResource MaterialDesignToolForegroundButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}"  HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Kind="SettingsOutline"  HorizontalAlignment="Right" />
+                            </Button>
+
+                            <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center">
+                                长沙学院校园网客户端
+                            </TextBlock>
+
+                        </DockPanel>
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone  Mode="PrimaryMid" VerticalAlignment="Stretch" Grid.Row="1">
+                        <materialDesign:PackIcon Kind="AccountCircle"  Height="120" Width="120" VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                    </materialDesign:ColorZone>
+                    <materialDesign:ColorZone  Mode="PrimaryMid" VerticalAlignment="Stretch" Grid.Row="2">
+                        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14">已登录</TextBlock>
+                    </materialDesign:ColorZone>
+
+                    <StackPanel  Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                        <TextBlock HorizontalAlignment="Center" Text= "***" x:Name="tbUsr"></TextBlock>
+
+                        <Button  Style="{StaticResource MaterialDesignFlatButton}"  
+                                    Click="Logout_Click">
+                            注销
+                        </Button>
+
+                    </StackPanel>
+                </Grid>
+            </materialDesign:Flipper.FrontContent>
+            <materialDesign:Flipper.BackContent>
+                <Grid  Height="380" Width="300">
+                    <Grid.RowDefinitions>
+                        <RowDefinition  Height="auto" />
+                        <RowDefinition  Height="auto" />
+                        <RowDefinition  Height="*" />
+                    </Grid.RowDefinitions>
+                    <materialDesign:ColorZone  Mode="PrimaryMid" Padding="6" >
+                        <StackPanel  Orientation="Horizontal">
+                            <Button Style="{StaticResource MaterialDesignToolForegroundButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" HorizontalAlignment="Left">
+                                <materialDesign:PackIcon Kind="ArrowLeft"  HorizontalAlignment="Right" />
+                            </Button>
+                            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center">
+                                更多
+                            </TextBlock>
+                        </StackPanel>
+                    </materialDesign:ColorZone>
+                    
+                    <GroupBox Grid.Row="1" Header="个性化设置" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
+                        <Grid  Margin="0 6 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="172">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Left">
+                                <TextBlock VerticalAlignment="Center">
+                                    自动登录
+                                </TextBlock>
+                                <ToggleButton x:Name="cbAutoLogin" Click="CbAutoMin_Click"  Margin="8 0 0 0" ></ToggleButton>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Left">
+                                <TextBlock VerticalAlignment="Center">
+                                    登录后自动最小化
+                                </TextBlock>
+                                <ToggleButton x:Name="cbAutoMin" Click="CbAutoMin_Click" Margin="8 0 0 0"></ToggleButton>
+                            </StackPanel>
+                           
+                        </Grid>
+                    </GroupBox>
+                    <GroupBox Grid.Row="2" Header="本次登录情况" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
+                        <Grid  Margin="0 6 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="172">
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                
+                            </Grid.RowDefinitions>
+                            <TextBlock x:Name="CurrentTime" Grid.Row="0" >时长:********</TextBlock>
+                            <TextBlock x:Name="CurrentTraffic" Grid.Row="1">流量:********</TextBlock>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </materialDesign:Flipper.BackContent>
+            
+        </materialDesign:Flipper>
+
+
+
+    </DockPanel>
+
+
+</Window>

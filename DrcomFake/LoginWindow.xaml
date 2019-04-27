@@ -1,0 +1,68 @@
+﻿<Window x:Class="DrcomFake.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:DrcomFake"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        Background="{DynamicResource MaterialDesignPaper}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        FontFamily="Microsoft YaHei"
+        Title="长沙学院校园网客户端" Height="313.697" Width="364"
+        WindowStyle="None"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded" Icon="icon.ico"
+        >
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type system:DateTime}">
+            <StackPanel Margin="16">
+                <TextBlock>England win the World Cup:</TextBlock>
+                <TextBlock Margin="0 8 0 0" Text="{Binding }" />
+                <TextBlock Margin="0 8 0 0" >You will never see that again.</TextBlock>
+                <Button  Margin="0 8 0 0" IsDefault="True" Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}" Style="{DynamicResource MaterialDesignFlatButton}">AWESOME</Button>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
+
+
+
+    <DockPanel >
+        <materialDesign:ColorZone  Padding="0" materialDesign:ShadowAssist.ShadowDepth="Depth2"
+                                            Mode="PrimaryMid" DockPanel.Dock="Top" MouseLeftButtonDown="DragWindow" Height="60" RenderTransformOrigin="0.5,0.5">
+
+
+
+            <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="22">长沙学院校园网客户端</TextBlock>
+
+        </materialDesign:ColorZone>
+        <materialDesign:Snackbar HorizontalAlignment="Stretch" x:Name="Snackbar" DockPanel.Dock="Bottom">
+            <materialDesign:SnackbarMessage x:Name="SnackMessage"
+                
+                ActionContent="OK" ActionClick="SnackbarMessage_ActionClick"/>
+        </materialDesign:Snackbar>
+        <Grid >
+            <ProgressBar x:Name="prgBar"  VerticalAlignment="Top"/>
+            <Button x:Name="btnLogin" Content="登录" HorizontalAlignment="Left" Margin="79,153,0,0" VerticalAlignment="Top" Width="207" Click="BtnLogin_Click" TabIndex="5"
+                >
+
+
+            </Button>
+
+
+            <Label x:Name="lblUsr" Content="用户名" HorizontalAlignment="Left" Margin="79,41,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.651,0.533"/>
+            <Label x:Name="lblPwd" Content="密   码" HorizontalAlignment="Left" Margin="79,82,0,0" VerticalAlignment="Top" Width="52"/>
+            <TextBox x:Name="txtUsername"  HorizontalAlignment="Left" Height="23" Margin="159,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127" TabIndex="1" FontFamily="Arial"/>
+
+            <Button x:Name="btnCancel" Content="取消" Margin="79,190,78,32" Width="207" RenderTransformOrigin="0.514,1.173" Click="BtnCancel_Click" TabIndex="6"/>
+            <CheckBox x:Name="cbSavePass" Content="保存密码" HorizontalAlignment="Left" Margin="79,121,0,0" VerticalAlignment="Top" Click="Cb_Click" TabIndex="3"/>
+            <CheckBox x:Name="cbAutoLogin" Content="自动登录" HorizontalAlignment="Left" Margin="208,121,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.077,-0.03" Click="Cb_Click" TabIndex="4"/>
+            <PasswordBox x:Name="txtPasswd" HorizontalAlignment="Left" Margin="159,83,0,0" VerticalAlignment="Top" Width="127" TabIndex="2"/>
+        </Grid>
+
+    </DockPanel>
+</Window>
