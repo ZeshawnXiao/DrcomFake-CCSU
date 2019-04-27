@@ -12,7 +12,7 @@ namespace DrcomFake
 
         public static void log(string content)
         {
-            return;
+            
             try
             {
                 
