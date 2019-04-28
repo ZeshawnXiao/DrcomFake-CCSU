@@ -126,7 +126,14 @@
                                 </TextBlock>
                                 <ToggleButton x:Name="cbAutoMin" Click="CbAutoMin_Click" Margin="8 0 0 0"></ToggleButton>
                             </StackPanel>
-                           
+                            <StackPanel Grid.Row="2"  Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Left">
+                                <TextBlock >
+                                <Hyperlink NavigateUri="https://github.com/ZeshawnXiao/DrcomFake-CCSU/issues" Name="linkHelp" Click="linkDmsite_Click">
+                                    BUG反馈及意见   
+                                </Hyperlink>
+                                </TextBlock>
+                            </StackPanel>
+
                         </Grid>
                     </GroupBox>
                     <GroupBox Grid.Row="2" Header="本次登录情况" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">

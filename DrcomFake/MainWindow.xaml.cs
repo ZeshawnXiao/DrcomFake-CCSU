@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -141,6 +142,12 @@ namespace DrcomFake
             string b = (flow1 / 1024).ToString() + "." + (flow0 / 1024) + " MB";
             b = b.PadLeft(10, ' ');
             CurrentTraffic.Text = "流量:" + b;
+        }
+
+        private void linkDmsite_Click(object sender, RoutedEventArgs e)
+        {
+            Hyperlink link = sender as Hyperlink;
+            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
         }
     }
 }
