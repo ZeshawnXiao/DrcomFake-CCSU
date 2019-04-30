@@ -44,8 +44,16 @@ namespace DrcomFake
 
         private void GetUpdateInfo(object sender, ElapsedEventArgs e)
         {
-            List<string> l = DrcomWeb.GetLoginInfo();
-            UpdateThread(l);
+            try
+            {
+                List<string> l = DrcomWeb.GetLoginInfo();
+                UpdateThread(l);
+            }
+            catch(Exception)
+            {
+                return;
+            }
+            
         }
 
         private void DragWindow(object sender, MouseButtonEventArgs e)

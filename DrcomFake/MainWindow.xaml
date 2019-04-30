@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:local="clr-namespace:DrcomFake"
+        
         mc:Ignorable="d"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         Background="{x:Null}"
@@ -29,6 +30,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Flipper.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Popupbox.xaml" />
 
+                
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
@@ -91,8 +93,8 @@
                 <Grid  Height="380" Width="300">
                     <Grid.RowDefinitions>
                         <RowDefinition  Height="auto" />
-                        <RowDefinition  Height="auto" />
                         <RowDefinition  Height="*" />
+                        
                     </Grid.RowDefinitions>
                     <materialDesign:ColorZone  Mode="PrimaryMid" Padding="6" >
                         <StackPanel  Orientation="Horizontal">
@@ -104,50 +106,73 @@
                             </TextBlock>
                         </StackPanel>
                     </materialDesign:ColorZone>
-                    
-                    <GroupBox Grid.Row="1" Header="个性化设置" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
-                        <Grid  Margin="0 6 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="172">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
 
-                            <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Left">
-                                <TextBlock VerticalAlignment="Center">
+                    <materialDesign:Transitioner Grid.Row="1" SelectedIndex="0" AutoApplyTransitionOrigins="True">
+                        <materialDesign:Transitioner.InputBindings>
+                            <KeyBinding Key="Left" Command="{x:Static materialDesign:Transitioner.MovePreviousCommand}" />
+                            <KeyBinding Key="Right" Command="{x:Static materialDesign:Transitioner.MoveNextCommand}" />
+                        </materialDesign:Transitioner.InputBindings>
+
+                        <materialDesign:TransitionerSlide OpeningEffect="{materialDesign:TransitionEffect FadeIn}">
+                            <GroupBox Grid.Row="1" Header="个性化设置" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
+                                <Grid  Margin="0 6 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="172">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Left">
+                                        <TextBlock VerticalAlignment="Center">
                                     自动登录
-                                </TextBlock>
-                                <ToggleButton x:Name="cbAutoLogin" Click="CbAutoMin_Click"  Margin="8 0 0 0" ></ToggleButton>
-                            </StackPanel>
-                            <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Left">
-                                <TextBlock VerticalAlignment="Center">
+                                        </TextBlock>
+                                        <ToggleButton x:Name="cbAutoLogin" Click="CbAutoMin_Click"  Margin="8 0 0 0" ></ToggleButton>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="1"  Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Left">
+                                        <TextBlock VerticalAlignment="Center">
                                     登录后自动最小化
-                                </TextBlock>
-                                <ToggleButton x:Name="cbAutoMin" Click="CbAutoMin_Click" Margin="8 0 0 0"></ToggleButton>
-                            </StackPanel>
-                            <StackPanel Grid.Row="2"  Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Left">
-                                <TextBlock >
+                                        </TextBlock>
+                                        <ToggleButton x:Name="cbAutoMin" Click="CbAutoMin_Click" Margin="8 0 0 0"></ToggleButton>
+                                    </StackPanel>
+                                    <StackPanel Grid.Row="2"  Orientation="Horizontal" Margin="0 12 0 0" HorizontalAlignment="Left">
+                                        <TextBlock >
                                 <Hyperlink NavigateUri="https://github.com/ZeshawnXiao/DrcomFake-CCSU/issues" Name="linkHelp" Click="linkDmsite_Click">
                                     BUG反馈及意见   
                                 </Hyperlink>
-                                </TextBlock>
-                            </StackPanel>
+                                        </TextBlock>
+                                    </StackPanel>
 
-                        </Grid>
-                    </GroupBox>
-                    <GroupBox Grid.Row="2" Header="本次登录情况" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
-                        <Grid  Margin="0 6 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="172">
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition />
-                                
-                            </Grid.RowDefinitions>
-                            <TextBlock x:Name="CurrentTime" Grid.Row="0" >时长:********</TextBlock>
-                            <TextBlock x:Name="CurrentTraffic" Grid.Row="1">流量:********</TextBlock>
-                        </Grid>
-                    </GroupBox>
+                                </Grid>
+                            </GroupBox>
+                        </materialDesign:TransitionerSlide>
+
+                        <materialDesign:TransitionerSlide Background="{DynamicResource MaterialDesignDarkBackground}" Foreground="{DynamicResource MaterialDesignDarkForeground}" ClipToBounds="True">
+                            <materialDesign:TransitionerSlide.OpeningEffects>
+                                <materialDesign:TransitionEffect
+                                    Kind="SlideInFromLeft"
+                                    Duration="0:0:0.8" />
+                                <materialDesign:TransitionEffect
+                                    Kind="SlideInFromBottom"
+                                    Duration="0:0:0.8"
+                                    OffsetTime="0:0:0.15" />
+                            </materialDesign:TransitionerSlide.OpeningEffects>
+                            <GroupBox Grid.Row="2" Header="本次登录情况" Style="{DynamicResource MaterialDesignGroupBox}" Margin="16" materialDesign:ShadowAssist.ShadowDepth="Depth3" BorderThickness="0">
+                                <Grid  Margin="0 6 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="172">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+
+                                    </Grid.RowDefinitions>
+                                    <TextBlock x:Name="CurrentTime" Grid.Row="0" >时长:********</TextBlock>
+                                    <TextBlock x:Name="CurrentTraffic" Grid.Row="1">流量:********</TextBlock>
+                                </Grid>
+                            </GroupBox>
+                        </materialDesign:TransitionerSlide>
+                    </materialDesign:Transitioner>
                 </Grid>
+
+                
             </materialDesign:Flipper.BackContent>
             
         </materialDesign:Flipper>

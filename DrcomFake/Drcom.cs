@@ -176,7 +176,7 @@ namespace DrcomFake
                     string ip = (nic["IPAddress"] as String[])[0];
                     string mac = nic["MacAddress"].ToString();
                     string gateway = (nic["DefaultIPGateway"] as String[])[0];
-                    if (gateway.Contains(".254") && ip.Contains("172."))
+                    if (gateway.Contains("254") && gateway.Contains("172.") && ip.Contains("172."))
                     {
                         host_ip = ip;
                         return mac.Replace(":", "");
@@ -559,20 +559,20 @@ namespace DrcomFake
                     HeartBeat_1(salt, taill, pwd, svr);
                     ran += random.Next(1, 10);
                     packet = HearBeat_PackageBuilder(i, tail, 1, false);
-                    //Log.log("send" + Convert.ToString(i)+" " + ConvertStringToHex(packet));
+                    Log.log("send" + Convert.ToString(i)+" " + ConvertStringToHex(packet));
                     sendData = Encoding.UTF8.GetBytes(packet);
                     s.SendTo(sendData, ipep);
                     s.ReceiveFrom(recvdata, SocketFlags.None, ref ep);
-                    //Log.log("recv" + BytesToString(recvdata));
+                    Log.log("recv" + BytesToString(recvdata));
                     tail = Encoding.UTF8.GetString(recvdata).Substring(16, 4);
 
                     ran += random.Next(1, 10);
                     packet = HearBeat_PackageBuilder(i+1, tail, 3, false);
-                    //Log.log("send" + Convert.ToString(i+1) + " " + ConvertStringToHex(packet));
+                    Log.log("send" + Convert.ToString(i+1) + " " + ConvertStringToHex(packet));
                     sendData = Encoding.UTF8.GetBytes(packet);
                     s.SendTo(sendData, ipep);
                     s.ReceiveFrom(recvdata, SocketFlags.None, ref ep);
-                    //Log.log("recv " + BytesToString(recvdata));
+                    Log.log("recv " + BytesToString(recvdata));
                     tail = Encoding.UTF8.GetString(recvdata).Substring(16, 4);
 
                     i = (i + 2) % 0xff;
